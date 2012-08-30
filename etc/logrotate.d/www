@@ -1,0 +1,17 @@
+/home/*/www/logz/*.log {
+        daily
+	dateext
+        missingok
+        rotate 99
+        compress
+        delaycompress
+        notifempty
+        create 640
+        sharedscripts
+        postrotate
+                if [ -f "`. /etc/apache2/envvars ; echo ${APACHE_PID_FILE:-/var/run/apache2.pid}`" ]; then
+                        /etc/init.d/apache2 reload > /dev/null
+                fi
+        endscript
+}
+

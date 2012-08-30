@@ -1,0 +1,32 @@
+<VirtualHost *:88>
+	ServerAdmin allen@1allen.com
+	ServerName 1allen.com
+	ServerAlias *.1allen.com
+
+	DocumentRoot /home/allen/www/public_html/
+
+	<Directory /home/allen/www/public_html/>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	ErrorLog /home/allen/www/logz/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+	#LogLevel debug
+
+	CustomLog /home/allen/www/logz/access.log combined
+
+	php_admin_value open_basedir "/home/allen/www:/home/allen/www/tmp:."
+	php_admin_value upload_tmp_dir "/home/allen/www/tmp"
+	php_admin_value session.save_path "/home/allen/www/tmp"
+
+	<IfModule mpm_itk_module>
+		AssignUserId allen allen
+	</IfModule>
+
+</VirtualHost>
