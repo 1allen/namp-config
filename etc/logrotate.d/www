@@ -6,7 +6,7 @@
         compress
         delaycompress
         notifempty
-        create 640
+        copytruncate
         sharedscripts
         postrotate
                 if [ -f "`. /etc/apache2/envvars ; echo ${APACHE_PID_FILE:-/var/run/apache2.pid}`" ]; then
